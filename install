@@ -1,0 +1,136 @@
+**以下内容均在Ubuntu 12.04 32位系统下测试成功，64位系统尚未测试**
+
+###一、制作启动U盘，安装Ubuntu12.04，安装过程略。（在选择安装方式时请注意，根据不同的情况自行选择）
+
+###二、安装更新
+`sudo apt-get upgrade`
+
+###三、安装中文支持
+
+####支持中文
+按super键（徽标键）打开Dash，在搜索条中输入lang，在结果中选择LanguageSupport
+Install/Remove Languages
+Chinese(simplified)
+
+####中文输入
+在上一个窗口中
+Keyboard input method system
+ibus
+
+####拼音输入
+按super键（徽标键）打开Dash，在搜索条中输入input，在结果中选择Keyboard Input Methods
+勾选Customize active input methods
+Input Methods-Select an input method
+Chinese-PinYin
+
+
+####Git支持中文显示
+`git config --global core.quotepath false`
+
+####Gedit中文乱码
+`gconftool-2 --set --type=list --list-type=string /apps/gedit-2/preferences/encodings/auto_detected "[UTF-8,CURRENT,GB18030,BIG5-HKSCS,UTF-16]"`
+
+###四、取消sudo密码
+    sudo visudo
+
+    %admin ALL=(ALL) NOPASSWD:ALL`
+貌似效果不大
+
+###五、添加bash命令
+`cd Documents;git clone git://github.com/ery/suitup.git`
+`sh suitup/install.sh`
+
+###六、安装tool
+
+    sudo apt-get install -y git
+    sudo apt-get install -y gitg
+    sudo apt-get install -y vim
+    sudo apt-get install -y aria2
+    sudo apt-get install -y vsftpd
+    sudo apt-get install -y openssh-server
+    sudo apt-get install -y nautilus-open-terminal
+    sudo apt-get install -y thunderbird
+    sudo apt-get install -y chromium-browser
+    sudo apt-get install -y ctags
+    sudo apt-get install -y byobu(依个人喜好)
+在软件中心里安装syanptic package manager（可选）
+
+去[SublimeText2 官网](http://www.sublimetext.com/2 "SublimeText2") 依系统版本下载相应的版本.
+
+在软件中心中安装virtual box（依个人喜好）
+
+*如果要安装10.10的桌面系统 `sudo apt-get install gnome-panel` 然后在登录时就可以选择Gnome了*
+
+####安装RVM
+
+#####安装rvm需要的lib
+    sudo apt-get install -y \
+    build-essential openssl libreadline6 \
+    libreadline6-dev curl git-core zlib1g \
+    zlib1g-dev libssl-dev libyaml-dev \
+    libsqlite3-0 libsqlite3-dev sqlite3 \
+    libxml2-dev libxslt1-dev autoconf \
+    libc6-dev libncurses5-dev automake \
+    libtool bison subversion
+
+######安装rvm
+`bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )`
+
+######添加rvm的提示符
+    echo 'PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting' >> ~/.bashrc
+    echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bashrc
+    echo 'PS1="\$($rvm_path/bin/rvm-prompt v g)-$PS1"' >> ~/.bashrc
+前两句中的一句rvm安装时会帮你写入，好像是第二句
+
+####Sublime Text 2配置
+安装 Package Control 
+进去Sublime Text 2，按Ctrl+`，调出命令行
+运行`import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())`
+
+可以选择安装的插件alignment，ctags，rubytest，simple rails navigator，Terminal，rails related files
+
+详见[Sublime Text 2 入门及技巧](http://lucifr.com/139225/sublime-text-2-tricks-and-tips/)
+
+###七、preferences
+对于untiy桌面，安装`sudo apt-get install myuntiy`，来调整外观
+Gnome桌面，有个叫gnome-tweak的软件。
+Appearance Preferences
+Font 
+Fixed width font Monospace 12
+
+Gedit preferences
+1 Disable Text wrapping
+2 Display line numbers
+3 Font & Colors Oblivion
+
+###八、git.config
+Git用户名和邮箱
+`git config --global user.name "Your Name"`
+`git config --global user.email "your@mail.com"`
+
+###九、ssh.key
+Do It Yourself~
+
+###十、安装awebook
+需要本地安装
+
+    sudo apt-get install -y sqlite3
+    sudo apt-get install -y libsqlite3-ruby
+    sudo apt-get install -y libsqlite3-dev
+    sudo apt-get install -y mysql-server
+    sudo apt-get install -y libmysqlclient-dev
+
+###十一、awebook开发环境
+
+$ rvm pkg install openssl
+$ rvm install 1.9.3-p0 --with-openssl-dir=$rvm_path/usr
+$ gem install bundle
+$ cd Document/awebook
+$ bundle install
+
+###十二、根据个人喜好定制
+
+###十三、备份
+
+
+
